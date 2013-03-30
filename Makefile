@@ -16,6 +16,6 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c %.c
 
 clean:
-	rm $(OBJS) $(TARGET)
+	@rm $(OBJS) $(TARGET)
 
 #g++ -g -Wall -DGL_GLEXT_PROTOTYPES   -c -o compute.o compute.cpp
