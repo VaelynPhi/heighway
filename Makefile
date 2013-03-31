@@ -2,20 +2,24 @@ CXXFLAGS = -g -Wall -DGL_GLEXT_PROTOTYPES
 
 TARGET = heighway
 
-OBJS = compute.o draw.o heighway.o
+OBJS = obj/compute.o obj/draw.o obj/heighway.o
 
 LIBS = -lGL -lglut -lGLU
 
-.PHONY: clean
+.PHONY: clean try
 
 $(TARGET): $(OBJS)
+#	# [MAKE] $@
 	@$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
 
-%.o: %.c
-	# %.c --> $@
-	$(CXX) $(CXXFLAGS) -c %.c
+obj/%.o: %.cpp
+#	# [COMPILE]  $< --> $@
+	@$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 clean:
-	@rm $(OBJS) $(TARGET)
+#	# [REMOVE] $(OBJS) $(TARGET)
+	@-rm $(OBJS) $(TARGET) 2>/dev/null
 
-#g++ -g -Wall -DGL_GLEXT_PROTOTYPES   -c -o compute.o compute.cpp
+try: $(TARGET)
+	@./$(TARGET)
+
