@@ -1,4 +1,1 @@
-heighway
-========
-
-Heighway Dragon SVG
+This is not a file.
