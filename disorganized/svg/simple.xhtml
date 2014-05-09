@@ -1,0 +1,15 @@
+<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'><head><style type='text/css'>
+html,body { margin: 0; padding: 0; }
+body { font: 16px Courier, Monospace; }
+.comment { position: absolute; bottom: 0; right: 0; border: 1px silver dashed; text-align: right; width: 300px; height: 96%; }
+.svg_frame { position: absolute; top: 0; bottom: 0; border: 1px black dotted; }
+</style>
+<script type='text/ecmascript' src='svgLib.js'></script>
+<script type='text/ecmascript' src='simple.js'></script>
+<script type='text/ecmascript'>// <![CDATA[
+
+function init(){
+ var h = new heighway({ stride: 20, debug: false });
+ h.doSteps(7);
+ h.draw();
+}// ]]></script></head><body id='outer' onload='init();'> </body></html>
