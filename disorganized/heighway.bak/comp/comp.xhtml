@@ -1,0 +1,45 @@
+<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'><head><style type='text/css'>
+body { font: 12pt Courier New; }
+.comment { position: absolute; bottom: 10pt; right: 10pt; border: 1px red dotted; text-align: right; width: 18%; height: 96%; }
+.svg_frame { position: absolute; top: 4px; left: 4px; height: 600px; width: 800px; border: 1px black dashed; }
+</style>
+<script type='text/ecmascript' src='../old/SVG OOP.js'></script>
+<script type='text/ecmascript'>// <![CDATA[
+var o,b,g;
+
+function heighway(n){ me=this; this.endpt=[]; this.drawends=false;
+ this.h = [false]; this.l = 1; this.r = 1;
+ if(n!=null){ this.compute(n); }
+ this.p = { x: 0, y: 0 }; this.d = 0;
+}
+heighway.prototype.compute = function(n){ this.r = n; while(--n){ var l = this.h.length; this.endpt.push(this.l); this.h.push(false); while(l--){ this.h.push(!this.h[l]); }; this.l=this.h.length; } }
+heighway.prototype.draw = function(sz){ var ci=0; if(sz==null){ sz=10; }; this.size=sz;
+	var col=(this.col || ['black','silver','red','green','yellow','blue']); var cl=col.length;
+	var comp = [ {x:0,y:sz},{x:sz,y:0},{x:0,y:-sz},{x:-sz,y:0} ];
+	var ep=0; if(this.drawends){ g.circle(2,this.p.x,this.p.y); };
+	for(var i=0; i<this.l; i++){
+		g.line(this.p.x,this.p.y,this.p.x+=comp[this.d].x,this.p.y+=comp[this.d].y,col[ci]);
+		this.d = ( this.d + (this.h[i]?3:1) ) % 4;
+		if(i==this.endpt[ep]){ if(this.drawends){ g.circle(2,this.p.x,this.p.y,col[ci]); }; ep++; ci++; ci%=cl; }
+	}
+	g.line(this.p.x,this.p.y,this.p.x+=comp[this.d].x,this.p.y+=comp[this.d].y,col[ci]);
+	if(this.drawends){ g.circle(2,this.p.x,this.p.y,col[ci]); };
+}
+
+heighway.prototype.nextend = function(){ return { x: this.p.x + this.p.y, y: this.p.y - this.p.x }; }
+heighway.prototype.backdraw = function(){ this.p = this.nextend(); this.d=3; this.draw(this.size); }
+heighway.prototype.reset = function(xr,yr){ xr=(xr==null?0:xr); yr=(yr==null?0:yr); this.p = {x:xr,y:yr}; }
+
+function load(){ o = document.getElementById('outer'); b = new debug_box(o,'comment');
+// g = new SVG_Element(o,'svg_frame','-400 -300 800 600');
+ g = new SVG_Element(o,'svg_frame','-600 -400 1200 800');
+ var he=new heighway(6);
+ he.drawends=true;
+ he.col = ['#FF0000','#878700','#00FF00','#008787','#0000FF','#870087'];
+ he.reset(0,150)
+ he.draw(15);
+ he.d = 0;
+ he.reset(0,-150);
+ he.draw(15);
+
+}// ]]></script></head><body id='outer' onload='load();'> </body></html>

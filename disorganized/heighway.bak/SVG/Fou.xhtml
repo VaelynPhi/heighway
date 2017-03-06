@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title></title>
+<style type='text/css'>
+svg { position: absolute; top: 10px; left: 10px; width: 800px; height: 600px; border: silver dashed 1px; }
+
+</style><script type='text/javascript'>
+var M;
+var svgNS = 'http://www.w3.org/2000/svg'
+
+function SVG(ELEM){ return document.createElementNS(svgNS,ELEM); }
+function SA(ELEM,Q,V){ ELEM.setAttribute(Q,V); }
+function circle(PX,PY,PR,PFILL){ var c = SVG('circle'); SA(c,'cx',PX); SA(c,'cy',PY); SA(c,'r',PR); SA(c,'fill',PFILL); return c; }
+
+
+function init(){
+M = document.getElementById('mother');
+
+}//</script></head><body onload='init();'><svg id='mother' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" /></body></html> 

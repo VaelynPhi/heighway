@@ -1,0 +1,92 @@
+<html><head><script type='text/ecmascript' src='./js/DHTML.js'></script><script type='text/ecmascript'>
+
+document.onmousemove = move;
+document.onkeydown = typing;
+var lis = ['Sentences for example.','Here,is,text,with,commas.','Match Capital Letters?','How about replacement?'];
+var O = gE('outer');
+var o;
+var newDiv;
+var Dx,Dy,Ux,Uy,x,y,MDx,MDy,MUx,MUy;
+var mot = false;
+var newD = false;
+var typo = false;
+var reg = /for|is|about/;
+
+function MM(ME){ o.replaceChild(Text(ME),o.firstChild); }
+function selector(){ MM('In'); }
+function deselector(){ MM('Out'); }
+function Mup(event){ if(newD==false){ event.cancelBubble = true; }; mot = false; }
+function Mclick(){ typo = true; }
+
+function toFrontZ(element){}
+
+function typing(event){
+// if(typo){ }
+}
+
+function Mdown(event){
+ mot = true;
+ newDiv = event.target;
+ toFrontZ(newDiv);
+ MDx = x - parseInt(newDiv.style.left,10);
+ MDy = y - parseInt(newDiv.style.top,10);
+}
+
+function MakeDiv(){
+ var MD = Add('div');
+ MD.appendChild(Text('Here.'));
+ MD.style.position = 'absolute';
+ MD.style.border = 'blue dotted 1px';
+ MD.style.backgroundColor = 'silver';
+ MD.addEventListener("mouseover",selector,false);
+ MD.addEventListener("mouseout",deselector,false);
+ MD.addEventListener("mousedown",Mdown,false);
+ MD.addEventListener("mouseup",Mup,false);
+ MD.addEventListener("click",Mclick,false);
+ return MD;
+}
+
+function move(event){
+ x = event.clientX; y = event.clientY;
+ if(newD){
+  newDiv.style.height = Math.abs(y-Dy);
+  newDiv.style.width = Math.abs(x-Dx);
+  if(y<Dy){ newDiv.style.top = y; }else{ newDiv.style.top = Dy; }
+  if(x<Dx){ newDiv.style.left = x; }else{ newDiv.style.left = Dx; }
+ }
+ if(mot){ newDiv.style.left = x - MDx; newDiv.style.top = y - MDy; }
+}
+
+function Down(event){
+ alert(event.target);
+ Dy = event.clientY; Dx = event.clientX;
+ if(event.target==O.parentNode){
+  newDiv = MakeDiv();
+  O.appendChild(newDiv);
+  newD = true;
+ }else if(event.target.parentNode==O){
+  typo = event.target;
+ }
+}
+
+function Up(event){
+ alert(event);
+ Ux = event.clientX; Uy = event.clientY;
+ newD = false;
+ mot = false;
+ if((Ux==Dx)||(Uy==Dy)){ newDiv.parentNode.removeChild(newDiv); }
+}
+
+function load(){
+ O = gE('outer');
+ o = Add('div');
+ O.id = 'Body Division.';
+ o.style.position = 'absolute';
+ o.style.top = '10px';
+ o.style.left = '10px';
+ o.style.border = 'red dotted 1px';
+ o.style.backgroundColor = 'silver';
+ o.appendChild(Text('Hmm...'));
+ o.appendChild(Add('br'));
+ O.appendChild(o);
+}// </script></head><body id='outer' onmousedown='Down(event)' onmouseup='Up(event);' onload='load();' onkeydown='typing(event);' /></html>

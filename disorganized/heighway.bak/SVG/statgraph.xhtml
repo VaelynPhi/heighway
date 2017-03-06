@@ -1,0 +1,23 @@
+<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'><head><style type='text/css'>
+
+body { font: 12pt Courier New; }
+.comment { position: absolute; bottom: 10pt; right: 10pt; border: 1px red dotted; text-align: right; width: 18%; height: 96%; }
+.svg_frame { position: absolute; top: 4px; left: 4px; height: 600px; width: 1000px; border: 1px black dashed; }
+
+</style>
+<script type='text/ecmascript' src='./SVG OOP.js'></script>
+<script type='text/ecmascript' src='./statgraph.js'></script>
+<script type='text/ecmascript'>// <![CDATA[
+var O,graph,box;
+
+function load(){
+ O = document.getElementById('outer');
+ box = new debug_box(O,'comment');
+ initstatgraph();
+
+
+}// ]]></script></head><body id='outer' onload='load();'>
+
+<statgraph type='histogram' data='10 10 11 12 12 13 14 14 14 15 15 16' />
+
+</body></html>

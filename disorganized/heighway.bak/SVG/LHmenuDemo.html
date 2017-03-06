@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html><head>
+<style type='text/css'>
+body { background: rgb(160,49,40); font: 12pt Times New Roman; line-height: 1em; }
+#inset { margin: 1%; background: rgb(212,203,170); height: 96%; -moz-border-radius: 10px; overflow: hidden; }
+
+.container { background-color: white; float: left; -moz-border-radius: 10px; margin: 1%; }
+.metacontainer { float: left; margin: 1%; }
+#mid { margin: 1% 0; width: 46%; padding-top: 10px; }
+#right { width: 25%; }
+#left { background: none; width: 25%; }
+#leftin { position: relative; margin: 0; width: 100%; height: 90%; top: 10%; }
+.inner { margin: 5px 10px; }
+
+#shield { position: relative; z-index: 1; text-align: center; margin: -15px auto -100% auto; height: 25%; width: 38%; }
+#splash { width: 100%; height: 100%; }
+
+table { border-collapse: collapse; text-align: center; width: 100%; line-height: 1em; }
+.titu { background-color: rgb(160,49,40); color: white; }
+th { font-weight: normal; text-align: right;  }
+
+#hot {  }
+#cold {  }
+
+.hots td,.hots th { width: 20%; }
+.colds td,.colds th { width: 25%; }
+
+#signature { margin-top: 60px; }
+
+.sighead { font: 1.5em Impact; text-align: center; }
+.sigsize { font-size: 1em; line-height: 1.1em; text-align: center; }
+.sigdrink { font: 1em Impact; }
+.description { font-size: 1em; text-align: justify; display: block; margin-left: 20px; line-height: .95em; }
+
+#not { border: 1px dotted magenta; }
+#etc { border: 1px inset yellow; }
+#logo { border: 1px dotted red; }
+
+</style><script type='text/ecmascript'>
+var sigcoldh,sighoth,signatureh; var ins; var ch = 640;
+var htc = ['none','']; var hc = 0;
+
+window.onresize = "sizer()";
+
+function hcswap(){ sigcoldh.style.display = htc[hc++]; sighoth.style.display = htc[hc%=2]; }
+function hoco(){ setTimeout("hoco( );",30000); hcswap(); }
+
+function sizer(){
+// alert('Resized?');
+ ch = window.innerHeight;
+ document.getElementById('inset').style.height = Math.floor(0.96*ch)+'px';
+ document.getElementById('left').style.height = Math.floor(0.92*ch)+'px';
+ document.getElementById('mid').style.height = Math.floor(0.90*ch)+'px';
+ document.getElementById('right').style.height = Math.floor(0.92*ch)+'px';
+}
+ 
+function init(){
+
+ sigcoldh = document.getElementById('sigcold'); sighoth = document.getElementById('sighot'); signatureh = document.getElementById('signature');
+ sigcoldh.style.display = 'none'; signatureh.addEventListener('click',hcswap,false); //hoco();
+ sizer();
+ 
+// alert(window.onresize);
+} // </script>
+</head><body onload='init();'><div id='inset'>
+ <div id='left' class='metacontainer'>
+ <div id='shield'><img id='splash' src='./images/splash.png' /></div>
+ <div id='leftin' class='container'>
+  <div class='inner'>
+   <div id='signature'>
+    <div id='sighot'>
+     <div class='sighead'>Signature Drinks</div>
+     <div class='sigsize'>Hot, Iced, or Blended<br />Tall $4.50 &nbsp;&nbsp;&nbsp;&nbsp; Daytripper $5.40<br />Big Rig $5.90 (Blended or Iced only)</div>
+     <div class='sigdrink'>Espress Way</div><span class='description'>The best way to wake up if you can't choose just one: chocolate, caramel, and vanilla, topped with espresso whip.</span>
+     <div class='sigdrink'>Slippery Road</div><span class='description'>English toffee, butterscotch, and chocolate with toffee whip and Butterfinger &trade; pieces.</span>
+     <div class='sigdrink'>One Way</div><span class='description'>White chocolate, vanilla, and toffee nut with English toffee whip and toffee bits.</span>
+     <div class='sigdrink'>Sticky Bun Turbo</div><span class='description'>Coffee and a cinnamon bun in one: caramel, hazelnut, and cinnamon.</span>
+     <div class='sigdrink'>Lover's Lane</div><span class='description'>What's better than chocolate?  More chocolate!  Chocolate, white chocolate, and swiss chocolate smothered in espresso whip and raspberry.</span>
+     <div class='sigdrink'>Speed Bump</div><span class='description'>Caramel candied banana heaven.</span>
+    </div>
+    <div id='sigcold'>
+     <div class='sighead'>Blended Signature Drinks</div>
+     <div class='sigsize'>Tall $4.50 &nbsp;&nbsp;&nbsp;&nbsp; Daytripper $5.40<br />Big Rig $5.90</div>
+     <div class='sigdrink'>Traffic Stopper</div><span class='description'>All chocolate frozen and topped with our signature espresso whip and dark chocolate shavings.</span>
+     <div class='sigdrink'>Alligator Alley</div><span class='description'>Floridian creation with orange juice, hints of blackberry, and white chocolate, capped with vanilla whip cream and raspberry.</span>
+     <div class='sigdrink'>Espress Way</div>
+     <div class='sigdrink'>Slippery Road</div>
+     <div class='sigdrink'>One Way</div>
+     <div class='sigdrink'>Sticky Bun Turbo</div>
+     <div class='sigdrink'>Lover's Lane</div>
+     <div class='sigdrink'>Speed Bump</div>
+    </div>
+   </div>
+  </div>
+ </div></div>
+ <div id='mid' class='container'><div class='inner'>
+  <div class='hots'><table>
+   <tr class='titu'><td>Liquid Hot</td><td>Short</td><td>Tall</td><td>Grande</td><td>Daytripper</td></tr>
+   <tr><th>Latte</th><td>2.75</td><td>3.30</td><td>3.65</td><td>4.40</td></tr>
+   <tr><th>Cappucino</th><td>2.75</td><td>3.30</td><td>3.65</td><td>4.40</td></tr>
+   <tr><th>Café Breve</th><td>3.05</td><td>3.60</td><td>4.10</td><td>4.80</td></tr>
+   <tr><th>Americano</th><td>1.95</td><td>2.25</td><td>2.60</td><td>2.85</td></tr>
+   <tr><th>Espresso</th><td>1.55</td><td>2.10</td><td>2.65</td><td>3.20</td></tr>
+   <tr><th>Coffee</th><td>1.60</td><td>1.80</td><td>1.90</td><td>2.25</td></tr>
+   <tr><th>Café au Lait</th><td>1.95</td><td>2.20</td><td>2.45</td><td>2.70</td></tr>
+   <tr><th>Chai Latte</th><td>2.80</td><td>3.50</td><td>3.80</td><td>4.30</td></tr>
+   <tr><th>Tea</th><td>1.40</td><td>1.60</td><td>1.80</td><td>1.85</td></tr>
+   <tr><th>Hot Cocoa</th><td>2.35</td><td>2.60</td><td>3.00</td><td>3.50</td></tr>
+   <tr><th>Steamer</th><td>2.35</td><td>2.60</td><td>3.00</td><td>3.50</td></tr>
+  </table></div>
+  <br />
+  <div class='colds'><table>
+   <tr class='titu'><td>Liquid Cold</td><td>Tall</td><td>Daytripper</td><td>Big Rig</td></tr>
+   <tr><th>Iced Latte</th><td>3.30</td><td>4.40</td><td>4.70</td></tr>
+   <tr><th>Liquid Freeze</th><td>3.95</td><td>5.15</td><td>5.75</td></tr>
+   <tr><th>Mocha Freeze</th><td>3.95</td><td>5.15</td><td>5.75</td></tr>
+   <tr><th>Fruit Smoothie</th><td>3.75</td><td>4.95</td><td>5.60</td></tr>
+   <tr><th>Iced Coffee</th><td>1.80</td><td>2.25</td><td>2.40</td></tr>
+   <tr><th>Iced Tea</th><td>1.60</td><td>1.80</td><td>1.85</td></tr>
+   <tr><th>Iced Chai</th><td>3.50</td><td>3.80</td><td>4.30</td></tr>
+   <tr><th>Italian Soda</th><td>1.80</td><td>2.30</td><td>2.75</td></tr>
+  </table></div>
+
+<!--
+
+  <div class='nots'><table>
+  </table></div>
+
+  <div id=''><table></table></div>
+
+	Bottled Juice	1.55
+	Canned Soda	.99
+	Bottled Water	1.25
+
+	Coffee 1lb	11.00
+	Coffee 1/2lb	5.95
+	Decaf 1lb	11.15
+	Decaf 1/2lb	6.25
+
+	Coffee Jug (96oz)	12.00
+
+	Muffin	1.60
+	Scone	1.55
+	Cinnamon Bun	1.55
+	Ham & Cheese Croissant	2.99
+	Bagel	1.15
+	Cream Cheese	.25
+	Cookie	.75
+
+	Protein	1.00
+	Flavor	.35
+	Specialty Whip	.30
+	Extra Shot	.55
+	
+ -->
+
+ </div></div>
+ <div id='right' class='container'><div class='inner'>
+  <table>
+   <tr class='titu'><td>What's that?</td></tr>
+
+   <tr><th>Latte</th><td>2.75</td><td>3.30</td><td>3.65</td><td>4.40</td></tr>
+   <tr><th>Cappucino</th><td>2.75</td><td>3.30</td><td>3.65</td><td>4.40</td></tr>
+   <tr><th>Café Breve</th><td>3.05</td><td>3.60</td><td>4.10</td><td>4.80</td></tr>
+   <tr><th>Americano</th><td>1.95</td><td>2.25</td><td>2.60</td><td>2.85</td></tr>
+   <tr><th>Espresso</th><td>1.55</td><td>2.10</td><td>2.65</td><td>3.20</td></tr>
+   <tr><th>Coffee</th><td>1.60</td><td>1.80</td><td>1.90</td><td>2.25</td></tr>
+   <tr><th>Café au Lait</th><td>1.95</td><td>2.20</td><td>2.45</td><td>2.70</td></tr>
+   <tr><th>Chai Latte</th><td>2.80</td><td>3.50</td><td>3.80</td><td>4.30</td></tr>
+   <tr><th>Tea</th><td>1.40</td><td>1.60</td><td>1.80</td><td>1.85</td></tr>
+   <tr><th>Hot Cocoa</th><td>2.35</td><td>2.60</td><td>3.00</td><td>3.50</td></tr>
+   <tr><th>Steamer</th><td>2.35</td><td>2.60</td><td>3.00</td><td>3.50</td></tr>
+
+
+   <tr><td></td></tr>
+   <tr><td></td></tr>
+   <tr><td></td></tr>
+   <tr><td></td></tr>
+  </table>
+
+ </div></div>
+</div></body></html>

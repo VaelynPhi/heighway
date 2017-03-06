@@ -1,0 +1,81 @@
+<html xmlns='http://www.w3.org/1999/xhtml'><head><style type='text/css'>
+body { font: 12pt Courier New; }
+.comment { position: absolute; bottom: 10pt; right: 10pt; border: 1px red dotted; text-align: right; width: 18%; height: 96%; }
+.svg_frame { position: absolute; top: 4px; left: 4px; height: 600px; width: 1000px; border: 1px black dashed; }
+</style>
+<script type='text/ecmascript' src='./SVG OOP.js'></script>
+<script type='text/ecmascript' src='./Spring System.js'></script>
+<script type='text/ecmascript'>// <![CDATA[
+var O,graph,box;
+var p;
+var run = false;
+
+function running(){
+ if(run){ p.timeStep(); }
+ setTimeout(running,100);
+}
+
+function keydown(event){ switch(event.keyCode){
+  case 65: { run = true; setTimeout(running,1); next; }
+  case 83: { run = false; next; }
+} }
+
+function ps(slate){
+ this.slate = slate;
+ this.r = [];
+ this.or = [];
+ this.a = [];
+ this.g = [0,-.98,0];
+ this.rep = [];
+ this.dt = 1;
+}
+
+ps.prototype.AccumulateForces = function(){
+ for(var i=0; i<this.r.length; i++){
+  this.a[i] = this.g.slice(0);
+ }
+}
+ps.prototype.Verlet = function(){
+ for(var i=0; i<this.r.length; i++){
+  var tr = this.r[i].slice(0);
+  for(var j=0; j<this.r[i].length; j++){
+   this.r[i][j] += this.r[i][j] - this.or[i][j] + (this.a[i][j]*this.dt*this.dt);
+  }
+  this.or[i] = tr.slice(0);
+ }
+}
+ps.prototype.SatisfyConstraints = function(){ }
+ps.prototype.updateSlate = function(){
+ for(var i=0; i<this.r.length; i++){
+  this.rep[i].moveTo(this.r[i][0],this.r[i][1]);
+ }
+}
+ps.prototype.timeStep = function(){
+ this.AccumulateForces();
+ this.Verlet();
+ this.SatisfyConstraints();
+ this.updateSlate();
+}
+ps.prototype.drawparticles = function(){
+ for(var i=0; i<this.r.length; i++){
+  this.rep[i] = this.slate.ellipse(1,1,this.r[i][0],this.r[i][1]);
+ }
+}
+ps.prototype.createParticle = function(initx,num){
+ for(var i=0; i<num; i++){
+  this.r.push(initx.slice(0)); this.or.push(initx.slice(0));
+ }
+ this.drawparticles();
+}
+
+function load(){
+ O = document.getElementById('outer');
+ box = new debug_box(O,'comment');
+ graph = new SVG_Element(O,'svg_frame','-500 -300 1000 600');
+ graph.line(-200,0,200,0);
+
+ p = new ps(graph);
+
+ p.createParticle([0,100,0],1);
+
+}// ]]></script></head><body id='outer' onload='load();' onkeydown='keydown(event);'> </body></html>

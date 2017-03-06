@@ -1,0 +1,42 @@
+<!DOCTYPE html><head><style type='text/css'>
+body { font: 10pt Courier New; }
+</style>
+<script type='text/ecmascript'>// <![CDATA[
+var o;
+
+function heighway(n){ me=this;
+	this.h = [false];
+	this.p = { x: 0, y: 0 };
+	this.l = 1;
+	this.r = 1;
+	if(n!=null){ me.compute(n); }
+}
+
+heighway.prototype.compute = function(n){
+ me.r = n;
+ while(--n){
+  var l = me.h.length;
+  me.h.push(false);
+  while(l--){ me.h.push(!me.h[l]); }
+  me.l=me.h.length;
+  me.write();
+ }
+}
+
+heighway.prototype.write = function(){ out( me.l + ": " ); for(l=0; l<me.l; l++){ out( (me.h[l]?1:0) ); }; br(); }
+
+/*function HeighwayEnds(n){ var i=0; g.circle(2,0,0,rb[ (i++)%rl ]); g.circle(2,hx,hy,rb[ (i++)%rl ]); while(--n){ hxp=hx; hyp=hy; hx+=hyp; hy-=hxp; g.circle(2,hx,hy,rb[ (i++)%rl ]); } }
+function computeHeighway(n,hei){ while(n--){ var gei=[4]; for(var i=0; i<hei.length; i++){ if(hei[i]==4){ gei.unshift(4); }else{ gei.unshift( (hei[i]+1)%4 ); } }; hei=hei.concat(gei); }; hei.unshift(4); return hei; }
+function drawHeighway(hei){
+ for(var i=0; i<hei.length; i++){
+  if( (hei[i]==4)&&(hei[i+1]==4) ){ i++; };
+  gf[hei[i]]();
+ }
+}*/
+
+function out(text){ o.appendChild(document.createTextNode(text)); }
+function br(){ o.appendChild(document.createElement('br')); }
+function load(){ o = document.getElementById('outer');
+ var hei = new heighway(7);
+// hei.write();
+}// ]]></script></head><body id='outer' onload='load();'></body></html>

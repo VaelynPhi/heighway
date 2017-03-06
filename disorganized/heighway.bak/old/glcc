@@ -1,0 +1,3 @@
+!/bin/bash
+[ -e "$1.c" ] && ext='c' || ext='cpp'
+gcc "$1.$ext" -o $1 -lglut -lGLU

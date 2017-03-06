@@ -1,0 +1,68 @@
+<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml'><head><style type='text/css'>
+body { font: 12pt Courier New; }
+.comment { position: absolute; bottom: 10pt; right: 10pt; border: 1px red dotted; text-align: right; width: 18%; height: 96%; }
+.svg_frame { position: absolute; top: 4px; left: 4px; height: 600px; width: 1000px; border: 1px black dashed; }
+</style><script type='text/ecmascript' src='./SVG OOP.js'></script><script type='text/ecmascript'>// <![CDATA[
+var O,graph,box;
+
+function NewtonClock(){
+ var MNC = this; this.tickDuration = 1; this.secondHand = null; this.time = 0; this.register = [];
+ this.registerEvent = function(ticker, timing){ this.register.push([ticker,timing]); }
+ this.tick = function(){ MNC.time++; for(var i=0; i<MNC.register.length; i++){ if(!(MNC.time%MNC.register[i][1])){ MNC.register[i][0](); } }; MNC.secondHand = setTimeout(MNC.tick,MNC.tickDuration); }
+ this.start = function(tickDuration, runtime){ MNC.runtime = runtime; setTimeout(MNC.stop,MNC.runtime); MNC.tickDuration = tickDuration; MNC.secondHand = setTimeout(MNC.tick,MNC.tickDuration); }
+ this.stop = function(){ clearTimeout(MNC.secondHand); }
+}
+ 
+function keydown(event){ switch(event.keyCode){
+  case 65: { next; }
+  case 83: { next; }
+} }
+
+function vector3(V_X,V_Y,V_Z,slate,moveable){ this.slate = slate; this.rep = null; this.x = V_X; this.y = V_Y; this.z = V_Z;
+ var thisV = this; this.xi = 0; this.yi = 0;
+ this.moveme = function(event){ thisV.x -= thisV.xi - event.clientX; thisV.y += thisV.yi - event.clientY; thisV.redrawVector(); thisV.xi = event.clientX; thisV.yi = event.clientY; ess.updateStep(); }
+ if(slate!=null){ this.rep = this.drawVector(); if(moveable){
+   this.rep.addEventListener('mousedown', function(event) { document.addEventListener('mousemove',thisV.moveme,false); thisV.xi = event.clientX; thisV.yi = event.clientY; }, false);
+   this.rep.addEventListener('mouseup', function(event) { document.removeEventListener('mousemove',thisV.moveme,false); }, false);
+ } }
+}
+ vector3.prototype.add = function(secondVector){ this.x += secondVector.x; this.y += secondVector.y; this.z += secondVector.z; }
+ vector3.prototype.subtract = function(secondVector){ this.x -= secondVector.x; this.y -= secondVector.y; this.z -= secondVector.z; }
+ vector3.prototype.copyVector = function(){ return new vector3(this.x,this.y,this.z); }
+ vector3.prototype.drawVector = function(V_radius,V_strokewidth,V_stroke,V_fill){ return this.slate.ellipse(V_radius||4,V_radius||4,this.x,this.y,V_stroke||'black',V_strokewidth||'1px', V_fill||'white'); }
+ vector3.prototype.redrawVector = function(){ this.rep.moveTo(this.x,this.y); }
+
+function oscillator(OX,OY,OZ,fig,moveable){
+ this.prototype = new vector3(OX,OY,OZ,fig,moveable);
+}
+
+function addVectors(firstVector,secondVector){ return new vector3( firstVector.x+secondVector.x , firstVector.y+secondVector.y , firstVector.z+secondVector.z ); };
+function subtractVectors(firstVector,secondVector){ return new vector3( (firstVector.x-secondVector.x) , (firstVector.y-secondVector.y) , (firstVector.z-secondVector.z) ); };
+
+function springPoint(baseVector,endVector,springConstant,clock){
+ this.base = baseVector; this.end = endVector; this.dV = baseVector.copyVector(); this.k = springConstant; //this.clock = clock;
+}
+ springPoint.prototype.updateStep = function(){
+  this.end.add();
+//  this.end.add(subtractVectors(this.base,this.dV)); this.dV = this.base.copyVector();
+//  if(this.base.rep!=null){ this.base.redrawVector(); }; if(this.end.rep!=null){ this.end.redrawVector(); }
+//  setTimeout(ess.updateStep(),100);
+//  box.say('Yo?');
+ }
+
+var ess;
+function load(){
+ O = document.getElementById('outer');
+ box = new debug_box(O,'comment');
+ graph = new SVG_Element(O,'svg_frame','-500 -300 1000 600');
+ graph.line(-200,0,200,0);
+
+ var os = new oscillator(0,0,0,graph,false);
+
+// ess = new springPoint(new vector3(-10,200,0,graph,true),new vector3(10,200,0,graph,false),1,new NewtonClock());
+// setTimeout(ess.updateStep(),10000);
+
+// alive();
+// dead();
+
+}// ]]></script></head><body id='outer' onload='load();' onkeydown='keydown(event);'> </body></html>

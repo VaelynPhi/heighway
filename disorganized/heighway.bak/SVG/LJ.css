@@ -1,0 +1,126 @@
+body {
+background: #888888;
+color: #7f7f7f;
+
+}
+a {
+color: #444444;
+}
+a:visited {
+color: #222222;
+}
+
+img {
+border: 0;
+}
+
+.box {
+border: 1px solid #7f7f7f;
+margin: 1em;
+background: #cccccc;
+color: #000000;
+}
+
+#navbar {
+width: 25%;
+}
+#body {
+width: 75%;
+}
+
+#navbar .box h1, .box h2, .box h3 {
+font-size: 1em;
+background: #7f7f7f;
+color: #ffffff;
+padding: 3px;
+margin: 0;
+}
+#navbar .box h1 {
+text-align: center;
+}
+
+.box h1 a, .box h2 a, .box h3 a {
+color: #ffffff;
+background: #7f7f7f;
+}
+
+.box h2 a.subjlink {
+   background: none;
+}
+
+.box h1 .ljuser A,
+.box h2 .ljuser A,
+.box h3 .ljuser A {
+	background: none;
+	color: #0000FF;
+	}
+
+#navbar .box div.userpic {
+margin: 1em;
+text-align: center;
+}
+
+#navbar p {
+margin-left: 1em;
+margin-right: 1em;
+margin-bottom: 0;
+}
+#navbar ul, #skipbar ul, #tagspage ul {
+list-style: none;
+padding: 0;
+margin: 0.5em;
+}
+#navbar ul li.active, #skipbar ul li.active {
+font-weight: bold;
+}
+
+.box .entry {
+margin: 1em;
+}
+
+.box .talklinks {
+margin: 1em;
+text-align: right;
+clear: both;
+}
+.box .talklinks .permalink {
+float: left;
+}
+
+.box .minicomment {
+clear: both;
+}
+
+.minicomment {
+margin-left: 1em;
+}
+
+body.day #body h1 {
+font-size: 1.1em;
+font-weight: bold;
+}
+
+table.box, table.box td, table.box th {
+border: 1px solid #000000;
+}
+
+A.subjlink, A.subjlink:hover, A.subjlink:visited {
+        text-decoration: none;
+}
+
+.metadata {
+margin-top: 1em;
+}
+
+form#postform table {
+background: #cccccc;
+color: #000000;
+}
+#navbar {
+width: 100px;
+font-family: Courier New;
+font-size: 10pt;
+}
+#body {
+width: auto;
+}

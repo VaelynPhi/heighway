@@ -1,0 +1,37 @@
+<svg version='1.2' baseProfile='full' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' id='outer' width='100%' height='100%' onload='load();' onmousemove='mousemove(evt);' zoomAndPan='disable'>
+<script type='text/ecmascript'> // <![CDATA[
+
+document.onkeydown=keydown;
+
+var svgNS = 'http://www.w3.org/2000/svg';
+var O = gE('outer');
+var H = null;
+
+function gE(ID){ return document.getElementById(ID); }
+function SVG(E){ return document.createElementNS(svgNS,E); }
+function SA(E,A,Q){ if(E) E.setAttribute(A,Q); }
+function Ayn(max){ return Math.round(Math.random()*max); }
+function C(){ return 'rgb('+Ayn(255)+','+Ayn(255)+','+Ayn(255)+')'; }
+function CHEK(){ SA(evt.target,'fill',C()); }
+function CHE(){
+ H=SVG('circle');
+ SA(H,'cx','100');
+ SA(H,'cy','100');
+ SA(H,'r','20');
+ SA(H,'fill',C());
+ H1=SVG('text');
+ SA(H1,);
+ SA(H1,);
+ SA(H1,);
+ SA(H1,);
+ 
+O.appendChild(H);
+}
+
+
+//SA(H,'fill',C()); //H.addEventListener('click',alert(),false);
+//CHE(); //espace(); //readdata(); //drawnodes(Unit);
+function mousemove(evt){ SA(H,'fill','red'); }
+function keydown(){ SA(H,'fill','rgb('+Ayn(255)+','+Ayn(255)+','+Ayn(255)+')'); }
+function load(){ CHE();
+} // ]]></script></svg>
